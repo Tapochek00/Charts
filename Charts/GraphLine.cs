@@ -75,7 +75,7 @@ namespace Charts
                 yMax = (int)_maxY;
             }
             newY = rnd.Next(yMin, yMax);
-            return new Point((double)X, newY);
+            return new Point(0, newY);
         }
 
         /// <summary>
@@ -89,10 +89,12 @@ namespace Charts
         /// <summary>
         /// Получение последней точки линии
         /// </summary>
-        /// <returns>Последняя точка линии</returns>
+        /// <returns>Последняя точка линии, если точки есть. Точка (-1;-1), если точек нет</returns>
         public Point GetLastPoint()
         {
-            return Line.Points.Last();
+            if (Line.Points.Count != 0)
+                return Line.Points.Last();
+            else return new Point(-1, -1);
         }
     }
 }
